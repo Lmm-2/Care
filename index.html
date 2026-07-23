@@ -88,42 +88,6 @@
             filter: brightness(1.1);
         }
 
-        /* لوحة إحصائيات البنات الفريدات */
-        .dashboard-box {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border: 2px dashed #ffb74d;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
-            text-align: right;
-        }
-
-        .dashboard-box h3 {
-            font-family: 'Cairo', sans-serif;
-            color: #e65100;
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stats-grid {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .stat-badge {
-            background: white;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 700;
-            color: #d84315;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            font-size: 1.1rem;
-        }
-
         /* تنسيق قسم الترحيب والصفحة الرئيسية */
         .welcome-section {
             text-align: center;
@@ -263,6 +227,79 @@
             box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
         }
 
+        /* تنسيق قسم التفاعل (سجل الرسائل أو اقتراحات الزوار) */
+        .interactive-section {
+            background: linear-gradient(135deg, #fff0f5, #f3e5f5);
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            border: 1px dashed var(--accent-color);
+        }
+
+        .interactive-section h3 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .interactive-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .feedback-input {
+            width: 100%;
+            padding: 12px 18px;
+            border-radius: 15px;
+            border: 2px solid #f8bbd0;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            color: var(--text-color);
+            outline: none;
+            background: #fff;
+            resize: vertical;
+            min-height: 90px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(216, 27, 96, 0.15);
+        }
+
+        .send-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(142, 36, 170, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .success-msg {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-top: 10px;
+            display: none;
+        }
+
         /* تنسيق حقوق النشر */
         .footer-copyright {
             text-align: center;
@@ -300,21 +337,12 @@
                 <p class="splash-text">
                     مرحباً بكِ في مساحتكِ الساحرة التي تجمع بين أسرار الجمال، العناية، وأفكار المشاريع الملهمة. اضغطي أدناه للدخول إلى عالمكِ الخاص والبدء في استكشاف المحتوى! ✨
                 </p>
-                <button class="enter-btn" onclick="registerVisitorDevice()">ادخل 🌸</button>
+                <button class="enter-btn" onclick="showPage('home')">ادخل 🌸</button>
             </div>
         </div>
 
         <!-- الترحيب والصفحة الرئيسية -->
         <div id="home" class="page-content">
-            
-            <!-- إجمالي عدد الزائرات الفريدات -->
-            <div class="dashboard-box">
-                <h3>📊 إجمالي عدد البنات اللواتي دخلن الموقع</h3>
-                <div class="stats-grid">
-                    <div class="stat-badge">إجمالي الزائرات الفريدات: <span id="uniqueVisitorCount">0</span></div>
-                </div>
-            </div>
-
             <div class="welcome-section">
                 <h2>Bloom & Beyond 🌸</h2>
                 <div class="welcome-box">
@@ -358,6 +386,15 @@
             <div class="article-card">
                 <h3>✨ نصائح للترطيب والتصفيف</h3>
                 <p>سر الكيرلز الثابتة يكمن في تقنية (Scrunching) لرفع الشعر للأعلى أثناء التصفيف، وتجفيفه باستخدام الدفيوزر (Diffuser) على حرارة منخفضة، أو تركه يجف طبيعياً للحصول على حيوية ولمعان مذهل.</p>
+            </div>
+
+            <!-- إضافة صندوق تفاعلي لطيف بدلاً من العداد -->
+            <div class="interactive-section">
+                <h3>💌 ركني المفضل أو اقتراحك</h3>
+                <p>شاركينا برأيكِ أو اتركي فكرة أو نصيحة تحبين إضافتها للصفحة:</p>
+                <textarea id="visitorNote" class="feedback-input" placeholder="اكتبي رسالتكِ أو فكرتكِ هنا بكل إرياحية..."></textarea>
+                <button class="send-btn" onclick="sendNote()">إرسال بريقكِ ✨</button>
+                <div id="successMsg" class="success-msg">تم حفظ رسالتكِ بلطف! شكراً لمشاركتكِ 🌸</div>
             </div>
 
             <button class="back-home" onclick="showPage('home')">العودة للرئيسية 🏠</button>
@@ -435,31 +472,17 @@
     </div>
 
     <script>
-        // دالة لحساب عدد الزائرات الفريدات بناءً على بصمة الجهاز (بحيث تحسب البنت مرة واحدة بغض النظر عن عدد مرات دخولها)
-        function registerVisitorDevice() {
-            // التحقق مما إذا كانت هذه البنت قد دخلت من نفس الجهاز من قبل
-            let hasVisited = localStorage.getItem('bloom_device_registered');
-            
-            let totalUnique = parseInt(localStorage.getItem('bloom_unique_count')) || 0;
-
-            if (!hasVisited) {
-                // إذا كان جهازا جديدا لم يزور الموقع من قبل، نزيد العدد مرة واحدة فقط
-                totalUnique += 1;
-                localStorage.setItem('bloom_unique_count', totalUnique);
-                localStorage.setItem('bloom_device_registered', 'true');
+        function sendNote() {
+            const noteInput = document.getElementById('visitorNote');
+            if(noteInput.value.trim() !== "") {
+                const successMsg = document.getElementById('successMsg');
+                successMsg.style.display = 'block';
+                noteInput.value = '';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 4000);
             }
-
-            // تحديث عرض العدد على الشاشة
-            document.getElementById('uniqueVisitorCount').innerText = totalUnique;
-
-            showPage('home');
         }
-
-        // تحديث العداد تلقائياً عند فتح الصفحة
-        window.onload = function() {
-            let totalUnique = parseInt(localStorage.getItem('bloom_unique_count')) || 0;
-            document.getElementById('uniqueVisitorCount').innerText = totalUnique;
-        };
 
         function showPage(pageId) {
             // إخفاء جميع الأقسام
