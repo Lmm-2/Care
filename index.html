@@ -91,7 +91,7 @@
         /* تنسيق قسم الترحيب والصفحة الرئيسية */
         .welcome-section {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         .welcome-section h2 {
@@ -116,6 +116,57 @@
             line-height: 1.9;
             color: #512da8;
             font-weight: 500;
+        }
+
+        /* قسم مولد النصائح العشوائية */
+        .tip-box {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px dashed #ce93d8;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+
+        .tip-box h3 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .tip-btn {
+            background: linear-gradient(45deg, #ab47bc, #8e24aa);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(142, 36, 170, 0.2);
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .tip-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(142, 36, 170, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .tip-result {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            min-height: 30px;
+            display: none;
+            background: #fff8e1;
+            padding: 15px;
+            border-radius: 12px;
+            animation: fadeIn 0.5s;
         }
 
         /* شريط التنقل بين الصفحات */
@@ -227,79 +278,6 @@
             box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
         }
 
-        /* تنسيق قسم التفاعل (سجل الرسائل أو اقتراحات الزوار) */
-        .interactive-section {
-            background: linear-gradient(135deg, #fff0f5, #f3e5f5);
-            padding: 25px;
-            border-radius: 18px;
-            margin-bottom: 25px;
-            border: 1px dashed var(--accent-color);
-        }
-
-        .interactive-section h3 {
-            font-family: 'Cairo', sans-serif;
-            font-size: 1.4rem;
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .interactive-section p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .feedback-input {
-            width: 100%;
-            padding: 12px 18px;
-            border-radius: 15px;
-            border: 2px solid #f8bbd0;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 1rem;
-            color: var(--text-color);
-            outline: none;
-            background: #fff;
-            resize: vertical;
-            min-height: 90px;
-            margin-bottom: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .feedback-input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 8px rgba(216, 27, 96, 0.15);
-        }
-
-        .send-btn {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(142, 36, 170, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .send-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
-
-        .success-msg {
-            color: var(--secondary-color);
-            font-weight: 700;
-            margin-top: 10px;
-            display: none;
-        }
-
         /* تنسيق حقوق النشر */
         .footer-copyright {
             text-align: center;
@@ -351,6 +329,13 @@
                     </p>
                 </div>
             </div>
+
+            <!-- قسم تفاعلي بدون كتابة (نصيحة اليوم) -->
+            <div class="tip-box">
+                <h3>✨ جرعة إلهام لليوم ✨</h3>
+                <button class="tip-btn" onclick="generateTip()">اضغطي هنا لنصيحة عشوائية 💡</button>
+                <div id="tipResult" class="tip-result"></div>
+            </div>
             
             <div class="nav-buttons">
                 <button class="nav-btn" onclick="showPage('curls')">🌸 العناية بالشعر الكيرلي</button>
@@ -386,15 +371,6 @@
             <div class="article-card">
                 <h3>✨ نصائح للترطيب والتصفيف</h3>
                 <p>سر الكيرلز الثابتة يكمن في تقنية (Scrunching) لرفع الشعر للأعلى أثناء التصفيف، وتجفيفه باستخدام الدفيوزر (Diffuser) على حرارة منخفضة، أو تركه يجف طبيعياً للحصول على حيوية ولمعان مذهل.</p>
-            </div>
-
-            <!-- إضافة صندوق تفاعلي لطيف بدلاً من العداد -->
-            <div class="interactive-section">
-                <h3>💌 ركني المفضل أو اقتراحك</h3>
-                <p>شاركينا برأيكِ أو اتركي فكرة أو نصيحة تحبين إضافتها للصفحة:</p>
-                <textarea id="visitorNote" class="feedback-input" placeholder="اكتبي رسالتكِ أو فكرتكِ هنا بكل إرياحية..."></textarea>
-                <button class="send-btn" onclick="sendNote()">إرسال بريقكِ ✨</button>
-                <div id="successMsg" class="success-msg">تم حفظ رسالتكِ بلطف! شكراً لمشاركتكِ 🌸</div>
             </div>
 
             <button class="back-home" onclick="showPage('home')">العودة للرئيسية 🏠</button>
@@ -472,18 +448,30 @@
     </div>
 
     <script>
-        function sendNote() {
-            const noteInput = document.getElementById('visitorNote');
-            if(noteInput.value.trim() !== "") {
-                const successMsg = document.getElementById('successMsg');
-                successMsg.style.display = 'block';
-                noteInput.value = '';
-                setTimeout(() => {
-                    successMsg.style.display = 'none';
-                }, 4000);
-            }
+        // دالة لعرض نصيحة عشوائية عند الضغط على الزر
+        function generateTip() {
+            const tips = [
+                "تذكري دائماً: جمالك يبدأ من ثقتك بنفسك! 💖",
+                "لا تنسي شرب كمية كافية من الماء اليوم للحفاظ على نضارة بشرتك 💧",
+                "الشعر الكيرلي يحب الترطيب، اعتمدي على حمام الزيت مرة أسبوعياً 🌸",
+                "كل مشروع كبير بدأ بفكرة صغيرة.. لا تترددي في البدء! 🚀",
+                "الابتسامة هي أجمل مكياج يمكن أن تضعيه 💄✨",
+                "استخدمي غطاء وسادة من الحرير أو الساتان لحماية شعرك الكيرلي أثناء النوم 🌙",
+                "النجاح في مشاريعك يحتاج إلى الاستمرارية، خطوة صغيرة كل يوم تصنع الفارق 🌟",
+                "الروتين البسيط المستمر أفضل من الروتين المعقد المتقطع 🎀",
+                "تجنبي تمشيط شعرك الكيرلي وهو جاف تماماً للحفاظ على الخصلات 🌿"
+            ];
+            
+            // اختيار نصيحة عشوائية من القائمة
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            
+            // عرض النصيحة
+            const tipElement = document.getElementById('tipResult');
+            tipElement.innerText = randomTip;
+            tipElement.style.display = 'block';
         }
 
+        // دالة التنقل بين الصفحات
         function showPage(pageId) {
             // إخفاء جميع الأقسام
             const pages = document.querySelectorAll('.page-content');
