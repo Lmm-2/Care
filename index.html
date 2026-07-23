@@ -88,7 +88,7 @@
             filter: brightness(1.1);
         }
 
-        /* لوحة إحصائيات الزوار الأنيقة */
+        /* لوحة إحصائيات البنات الفريدات */
         .dashboard-box {
             background: linear-gradient(135deg, #fff3e0, #ffe0b2);
             border: 2px dashed #ffb74d;
@@ -300,18 +300,18 @@
                 <p class="splash-text">
                     مرحباً بكِ في مساحتكِ الساحرة التي تجمع بين أسرار الجمال، العناية، وأفكار المشاريع الملهمة. اضغطي أدناه للدخول إلى عالمكِ الخاص والبدء في استكشاف المحتوى! ✨
                 </p>
-                <button class="enter-btn" onclick="registerVisit()">ادخل 🌸</button>
+                <button class="enter-btn" onclick="registerVisitorDevice()">ادخل 🌸</button>
             </div>
         </div>
 
         <!-- الترحيب والصفحة الرئيسية -->
         <div id="home" class="page-content">
             
-            <!-- لوحة إحصائيات عدد الزيارات بدقة -->
+            <!-- إجمالي عدد الزائرات الفريدات -->
             <div class="dashboard-box">
-                <h3>📊 عداد الزيارات</h3>
+                <h3>📊 إجمالي عدد البنات اللواتي دخلن الموقع</h3>
                 <div class="stats-grid">
-                    <div class="stat-badge">إجمالي عدد مرات الدخول: <span id="visitCount">0</span></div>
+                    <div class="stat-badge">إجمالي الزائرات الفريدات: <span id="uniqueVisitorCount">0</span></div>
                 </div>
             </div>
 
@@ -435,26 +435,30 @@
     </div>
 
     <script>
-        // دالة لحساب عدد الزيارات بدقة دون إجبار الزائر على كتابة اسمه
-        function registerVisit() {
-            let count = localStorage.getItem('bloom_visit_count');
+        // دالة لحساب عدد الزائرات الفريدات بناءً على بصمة الجهاز (بحيث تحسب البنت مرة واحدة بغض النظر عن عدد مرات دخولها)
+        function registerVisitorDevice() {
+            // التحقق مما إذا كانت هذه البنت قد دخلت من نفس الجهاز من قبل
+            let hasVisited = localStorage.getItem('bloom_device_registered');
             
-            if (count === null) {
-                count = 1;
-            } else {
-                count = parseInt(count) + 1;
+            let totalUnique = parseInt(localStorage.getItem('bloom_unique_count')) || 0;
+
+            if (!hasVisited) {
+                // إذا كان جهازا جديدا لم يزور الموقع من قبل، نزيد العدد مرة واحدة فقط
+                totalUnique += 1;
+                localStorage.setItem('bloom_unique_count', totalUnique);
+                localStorage.setItem('bloom_device_registered', 'true');
             }
-            
-            localStorage.setItem('bloom_visit_count', count);
-            document.getElementById('visitCount').innerText = count;
+
+            // تحديث عرض العدد على الشاشة
+            document.getElementById('uniqueVisitorCount').innerText = totalUnique;
 
             showPage('home');
         }
 
-        // تحديث العداد عند تحميل الصفحة في حال كان مخزناً مسبقاً
+        // تحديث العداد تلقائياً عند فتح الصفحة
         window.onload = function() {
-            let count = localStorage.getItem('bloom_visit_count') || 0;
-            document.getElementById('visitCount').innerText = count;
+            let totalUnique = parseInt(localStorage.getItem('bloom_unique_count')) || 0;
+            document.getElementById('uniqueVisitorCount').innerText = totalUnique;
         };
 
         function showPage(pageId) {
