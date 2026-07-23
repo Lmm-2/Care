@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom & Beyond 🌸</title>
+    <!-- خطوط عربية أنيقة ومميزة -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 50%, #e8eaf6 100%);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --primary-color: #d81b60;
+            --secondary-color: #8e24aa;
+            --text-color: #4a148c;
+            --accent-color: #ff80ab;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15);
+            padding: 40px;
+            margin-top: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+
+        /* صفحة البداية (الغلاف) */
+        .splash-section {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .splash-section h1 {
+            font-family: 'Amiri', serif;
+            font-size: 3.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .splash-text {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #512da8;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .enter-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 45px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(142, 36, 170, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(216, 27, 96, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* لوحة إحصائيات الزوار الأنيقة */
+        .dashboard-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px dashed #ffb74d;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        .dashboard-box h3 {
+            font-family: 'Cairo', sans-serif;
+            color: #e65100;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: #d84315;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1rem;
+        }
+
+        /* تنسيق قسم الترحيب والصفحة الرئيسية */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .welcome-section h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+            border: none;
+        }
+
+        .welcome-box {
+            background: linear-gradient(135deg, #fff0f5, #f3e5f5);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px dashed var(--accent-color);
+            margin-bottom: 30px;
+        }
+
+        .welcome-text {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            color: #512da8;
+            font-weight: 500;
+        }
+
+        /* شريط التنقل بين الصفحات */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+            border-bottom: 2px dashed #f8bbd0;
+            padding-bottom: 25px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(142, 36, 170, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* محتوى الأقسام (الصفحات) */
+        .page-content {
+            display: none;
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 12px;
+        }
+
+        /* تنسيق تفاصيل المقالات */
+        .article-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+            border-right: 6px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateX(-5px);
+        }
+
+        .article-card h3 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .article-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* زر العودة للرئيسية */
+        .back-home {
+            display: block;
+            width: fit-content;
+            margin: 35px auto 0 auto;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-home:hover {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
+        }
+
+        /* تنسيق حقوق النشر */
+        .footer-copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #e1bee7;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* تصميم متجاوب للشاشات الصغيرة */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .splash-section h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- صفحة البداية (الغلاف) -->
+        <div id="splash" class="page-content active">
+            <div class="splash-section">
+                <h1>Bloom & Beyond 🌸</h1>
+                <p class="splash-text">
+                    مرحباً بكِ في مساحتكِ الساحرة التي تجمع بين أسرار الجمال، العناية، وأفكار المشاريع الملهمة. اضغطي أدناه للدخول إلى عالمكِ الخاص والبدء في استكشاف المحتوى! ✨
+                </p>
+                <button class="enter-btn" onclick="registerVisit()">ادخل 🌸</button>
+            </div>
+        </div>
+
+        <!-- الترحيب والصفحة الرئيسية -->
+        <div id="home" class="page-content">
+            
+            <!-- لوحة إحصائيات عدد الزيارات بدقة -->
+            <div class="dashboard-box">
+                <h3>📊 عداد الزيارات</h3>
+                <div class="stats-grid">
+                    <div class="stat-badge">إجمالي عدد مرات الدخول: <span id="visitCount">0</span></div>
+                </div>
+            </div>
+
+            <div class="welcome-section">
+                <h2>Bloom & Beyond 🌸</h2>
+                <div class="welcome-box">
+                    <p class="welcome-text">
+                        أهلاً بكِ في عالمكِ المميز! ✨ لقد صُممت هذه الصفحة خصيصاً لتكون ملاذاً لكل ما تحبين؛ من أسرار العناية بالشعر الكيرلي والجمال المتألق، إلى إطلاق العنان لأفكار مشاريعكِ المبتكرة. استمتعي بالتنقل بين الأقسام واكتشاف كل ما هو جديد ومفيد!
+                    </p>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="showPage('curls')">🌸 العناية بالشعر الكيرلي</button>
+                <button class="nav-btn" onclick="showPage('beauty')">💄 الجمال والعناية</button>
+                <button class="nav-btn" onclick="showPage('projects')">💡 أفكار مشاريع</button>
+            </div>
+        </div>
+
+        <!-- الصفحة الأولى: العناية بالشعر الكيرلي -->
+        <div id="curls" class="page-content">
+            <h2>🌸 العناية بالشعر الكيرلي</h2>
+            
+            <div class="article-card">
+                <h3>✨ روتين الشعر الكيرلي</h3>
+                <p>الروتين الصحيح يبدأ بالغسيل بشامبو خالي من الكبريتات، مرورا بترطيب عميق (ديب كير) أسبوعياً، وانتهاءً بتطبيق كريم التصفيف والجل على شعر مبلل تماماً لضمان تجميع الخصلات ومنع الهيشان.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ أنواع الكيرلز وكيف تعرفي نوع شعرك</h3>
+                <p>تنقسم الخصلات عادة إلى فئات (Wavy, Curly, Coily) وبدرجات مختلفة من 2 إلى 4. معرفة نوع شعرك تساعدكِ في اختيار المنتجات الصحيحة التي تناسب خفتها أو كثافتها لتحقيق أفضل مظهر طبيعي.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ أخطاء تضر الشعر</h3>
+                <p>من أبرز الأخطاء تمشيط الشعر الكيرلي وهو جاف تماماً مما يكسر الخصلات، استخدام مناشف قطنية خشنة، أو الإفراط في استخدام الحرارة والمنتجات التي تحتوي على سيليكون ثقيل يراكم البقايا على فروة الرأس.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ تجارب منتجات</h3>
+                <p>لكل شعر شخصيته الفريدة! تجربة المنتجات تتطلب صبراً لملاحظة استجابة الشعر للمكونات المرطبة والمغذية، ومشاركة هذه التجارب تسهل الوصول للبدائل المناسبة ذات الجودة العالية.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ نصائح للترطيب والتصفيف</h3>
+                <p>سر الكيرلز الثابتة يكمن في تقنية (Scrunching) لرفع الشعر للأعلى أثناء التصفيف، وتجفيفه باستخدام الدفيوزر (Diffuser) على حرارة منخفضة، أو تركه يجف طبيعياً للحصول على حيوية ولمعان مذهل.</p>
+            </div>
+
+            <button class="back-home" onclick="showPage('home')">العودة للرئيسية 🏠</button>
+        </div>
+
+        <!-- الصفحة الثانية: الجمال والعناية -->
+        <div id="beauty" class="page-content">
+            <h2>💄 الجمال والعناية</h2>
+            
+            <div class="article-card">
+                <h3>✨ العناية بالبشرة</h3>
+                <p>البشرة النضرة تبدأ بالأساسيات: تنظيف لطيف يناسب طبيعة بشرتك، ترطيب مستمر، وحماية صارمة من الشمس يومياً للحفاظ على شبابها وحيويتها على المدى الطويل.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ روتين صباحي ومسائي</h3>
+                <p>الروتين الصباحي يركز على الانتعاش والحماية (غسول خفيف، مرطب، واقي شمس)، بينما الروتين المسائي يركز على الإصلاح والتنظيف العميق وإزالة آثار اليوم لتجديد خلايا البشرة أثناء النوم.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ نصائح للمكياج</h3>
+                <p>المكياج الناجح هو الذي يبرز جمالك الطبيعي لا يغيره. ابدئي بترطيب البشرة جيداً قبل الفاونديشن، واختاري الألوان البسيطة التي تمنحك إشراقة ناعمة ومريحة طوال اليوم.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ العناية بالجسم</h3>
+                <p>العناية بالجسم لا تقل أهمية عن الوجه؛ فالتقشير الأسبوعي المنتظم يزيل الخلايا الميتة، والترطيب المباشر بعد الاستحمام يمنح البشرة ملمساً ناعماً ونضارة دائمة.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ تنظيم روتين شخصي</h3>
+                <p>تنظيم الوقت وتخصيص أوقات ثابتة للعناية الذاتية يقلل التوتر ويمنحك طاقة إيجابية متجددة للتركيز على دراستك وأنشطتك اليومية بثقة.</p>
+            </div>
+
+            <button class="back-home" onclick="showPage('home')">العودة للرئيسية 🏠</button>
+        </div>
+
+        <!-- الصفحة الثالثة: أفكار مشاريع -->
+        <div id="projects" class="page-content">
+            <h2>💡 أفكار مشاريع</h2>
+            
+            <div class="article-card">
+                <h3>✨ مشاريع صغيرة من البيت</h3>
+                <p>ابدئي بشغفكِ! يمكنكِ إطلاق مشروع منزلي مصغر في مجالات الإكسسوارات المصنوعة يدويًا، المخبوزات، أو تصميم المحتوى الرقمي برأس مال بسيط وإمكانيات متاحة.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ أفكار للطلاب</h3>
+                <p>وازنِي بين دراستك وطموحكِ عبر مشاريع مرنة مثل تقديم دروس تدعيمية للمادة التي تبرعين فيها، أو تصميم ملخصات دراسية ودفاتر ملاحظات رقمية مميزة.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ كيف تبدئي مشروعك</h3>
+                <p>الخطوة الأولى تبدأ ببلورة الفكرة ودراسة الفئة المستهدفة، ثم وضع خطة عمل بسيطة وواضحة تحدد أهدافكِ وكيفية تحقيقها خطوة بخطوة.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ التسويق للمشاريع</h3>
+                <p>استثمري قوة منصات التواصل الاجتماعي لعرض منتجاتكِ أو خدماتكِ بأسلوب جذاب، وبناء هوية بصرية خاصة بمشروعكِ تعكس شخصيتكِ وتجذب الجمهور المستهدف.</p>
+            </div>
+
+            <div class="article-card">
+                <h3>✨ أفكار تغليف وتصميم</h3>
+                <p>التفاصيل تصنع الفارق الكبير! التغليف الأنيق والفريد يترك انطباعاً لا يُنسى لدى الزبائن ويحول المنتج العادي إلى تجربة هدايا ممتعة ومميزة.</p>
+            </div>
+
+            <button class="back-home" onclick="showPage('home')">العودة للرئيسية 🏠</button>
+        </div>
+
+        <!-- حقوق النشر -->
+        <div class="footer-copyright" id="footer" style="display: none;">
+            جميع الحقوق محفوظة © Bloom & Beyond 2026
+        </div>
+
+    </div>
+
+    <script>
+        // دالة لحساب عدد الزيارات بدقة دون إجبار الزائر على كتابة اسمه
+        function registerVisit() {
+            let count = localStorage.getItem('bloom_visit_count');
+            
+            if (count === null) {
+                count = 1;
+            } else {
+                count = parseInt(count) + 1;
+            }
+            
+            localStorage.setItem('bloom_visit_count', count);
+            document.getElementById('visitCount').innerText = count;
+
+            showPage('home');
+        }
+
+        // تحديث العداد عند تحميل الصفحة في حال كان مخزناً مسبقاً
+        window.onload = function() {
+            let count = localStorage.getItem('bloom_visit_count') || 0;
+            document.getElementById('visitCount').innerText = count;
+        };
+
+        function showPage(pageId) {
+            // إخفاء جميع الأقسام
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // إظهار الصفحة المطلوبة
+            document.getElementById(pageId).classList.add('active');
+            
+            // إظهار أو إخفاء حقوق النشر
+            const footer = document.getElementById('footer');
+            if (pageId === 'splash') {
+                footer.style.display = 'none';
+            } else {
+                footer.style.display = 'block';
+            }
+            
+            // التمرير بسلاسة لأعلى الحاوية
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
